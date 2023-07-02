@@ -1,5 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
+using myfinance_web_netcore.Models;
+
 
 
 namespace myfinance_web_netcore.Controllers
@@ -18,7 +20,21 @@ namespace myfinance_web_netcore.Controllers
 
         public IActionResult Index()
         {
-            var listAccount = _myFinanceDbContext.Account.;
+            var listAccount = _myFinanceDbContext.Account;
+
+            var listAccountModel = new List<AccountModel>();
+
+            foreach (var item in listAccount)
+            {
+                var accountModel = new AccountModel(){
+                    Id = item.Id,
+                    Description = item.Description,
+                    Type = item.Type,
+                };
+                listAccountModel.Add(accountModel);           
+            }
+            
+            ViewBag.ListAccount = listAccountModel;
             return View();
         }
 
