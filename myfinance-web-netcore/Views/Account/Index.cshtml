@@ -7,7 +7,8 @@
     <h1 class="display-4">@ViewData["Title"]</h1>
 </div>
 
-<button type="button" class="btn btn-info">Cadastrar Plano Conta</button>
+<button type="button" class="btn btn-info" onclick="Register()">Cadastrar Plano Conta</button>
+
 
 <table class="table">
   <thead>
@@ -34,3 +35,9 @@
     }
   </tbody>
 </table>
+
+<script>
+  function Register() {
+    window.location.href = "../Account/Register";
+  }
+</script>
