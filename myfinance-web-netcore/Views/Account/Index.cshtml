@@ -6,3 +6,31 @@
 <div class="text-center">
     <h1 class="display-4">@ViewData["Title"]</h1>
 </div>
+
+<button type="button" class="btn btn-info">Cadastrar Plano Conta</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      foreach(var item in (List<AccountModel>)ViewBag.ListAccount)
+      {
+        <tr>
+          <td>@item.Id</td>
+          <td>@item.Description</td>
+          <td>@item.Type</td>
+          <td><button type="button" class="btn btn-warning">Editar</button></td>         
+          <td><button type="button" class="btn btn-danger">Excluir</button></td> 
+        </tr>
+      }
+    }
+  </tbody>
+</table>
