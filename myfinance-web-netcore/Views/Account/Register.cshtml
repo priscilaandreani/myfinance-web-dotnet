@@ -1,7 +1,32 @@
-﻿@{
+﻿@model AccountModel
+
+@{
     ViewData["Title"] = "Register";
 }
 
 <div class="text-center">
     <h1 class="display-4">Cadastro de Plano de Contas</h1>
 </div>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+
+  <div class="mb-3">
+    <label for="id" class="form-label">Id</label>
+    <input type="text" class="form-control" id="id" aria-describedby="id" asp-for="Id" disabled/>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Descrição</label>
+    <input type="text" class="form-control" id="description" aria-describedby="description" asp-for="Description"/>
+  </div>
+  
+  <div class="mb-3">
+   <label>@Html.RadioButtonFor(x => x.Type, "D") Despesa</label> 
+   <label>@Html.RadioButtonFor(x => x.Type, "R") Receita</label> 
+  </div>
+
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+
+</form>
