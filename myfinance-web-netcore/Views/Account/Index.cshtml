@@ -28,7 +28,7 @@
           <td>@item.Id</td>
           <td>@item.Description</td>
           <td>@item.Type</td>
-          <td><button type="button" class="btn btn-warning">Editar</button></td>         
+          <td><button type="button" class="btn btn-warning" onclick="Edit(@item.Id)">Editar</button></td>         
           <td><button type="button" class="btn btn-danger">Excluir</button></td> 
         </tr>
       }
@@ -40,4 +40,9 @@
   function Register() {
     window.location.href = "../Account/Register";
   }
+
+  function Edit(id){
+    window.location.href = "../Account/Register/" + id;
+  }
+
 </script>
