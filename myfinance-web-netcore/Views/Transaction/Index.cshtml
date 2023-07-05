@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Transações Financeiras";
+    @* Layout = null; *@
+}
+
+<h2 class="display-4">@ViewData["Title"]</h2>
+
+<button type="button" class="btn btn-info" onclick="Register()">Cadastrar Plano Conta</button>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Data</th>
+      <th scope="col">Histórico</th>
+      <th scope="col">Account Id</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      foreach(var item in (List<TransactionModel>)ViewBag.Transactions)
+      {
+        <tr>
+          <td>@item.Id</td>
+          <td>@item.Date</td>
+          <td>@item.History</td>
+          <td>@item.AccountId</td>
+          <td><button type="button" class="btn btn-warning" onclick="Edit(@item.Id)">Editar</button></td>         
+          <td>@Html.ActionLink("Excluir", "Delete", "Transaction", new { Id = @item.Id}, new { @class = "btn btn-danger"})</td> 
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+
+<script>
+  function Register() {
+    window.location.href = "../Transaction/Register";
+  }
+
+  function Edit(id){
+    window.location.href = "../Transaction/Register/" + id;
+  }
+
+</script>
