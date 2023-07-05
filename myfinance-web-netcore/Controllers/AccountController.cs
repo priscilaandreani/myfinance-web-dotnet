@@ -91,6 +91,17 @@ namespace myfinance_web_netcore.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        [Route("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var account = new Account() { Id = id };
+            _myFinanceDbContext.Account.Remove(account);
+            _myFinanceDbContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
