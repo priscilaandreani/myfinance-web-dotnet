@@ -1,0 +1,29 @@
+﻿@model TransactionModel
+
+@{
+    ViewData["Title"] = "Registrar nova transação";
+}
+
+<div class="text-center">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+</div>
+
+<form asp-controller="Transaction" asp-action="Register" method="post">
+  <div class="mb-3">
+    <label for="id" class="form-label">Id</label>
+    <input type="text" class="form-control" id="id" aria-describedby="id" asp-for="Id" disabled/>
+  </div>
+  
+  <div class="mb-3">
+    <label for="date" class="form-label">Histórico</label>
+    <input type="text" class="form-control" id="history" aria-describedby="history" asp-for="History"/>
+  </div>
+
+    <div class="mb-3">
+    <label for="date" class="form-label">Data</label>
+    <input type="date" class="form-control" id="date" aria-describedby="date" asp-for="Date"/>
+  </div>
+
+
+
+</form>
