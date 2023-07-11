@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using myfinance_web_netcore.Application.Interfaces;
 using myfinance_web_netcore.Domain;
 using myfinance_web_netcore.Models;
 
@@ -13,33 +14,23 @@ namespace myfinance_web_netcore.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly MyFinanceDbContext _myFinanceDbContext;
+        private readonly IGetAccountUseCase _getAccountUseCase;
 
         public AccountController(ILogger<AccountController> logger,
-            MyFinanceDbContext myFinanceDbContext)
+            MyFinanceDbContext myFinanceDbContext,
+            IGetAccountUseCase getAccountUseCase
+            )
+
         {
             _logger = logger;
             _myFinanceDbContext = myFinanceDbContext;
+            _getAccountUseCase = getAccountUseCase;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var listAccount = _myFinanceDbContext.Account;
-
-            var listAccountModel = new List<AccountModel>();
-
-            foreach (var item in listAccount)
-            {
-                var accountModel = new AccountModel()
-                {
-                    Id = item.Id,
-                    Description = item.Description,
-                    Type = item.Type,
-                };
-                listAccountModel.Add(accountModel);
-            }
-
-            ViewBag.ListAccount = listAccountModel;
+            ViewBag.ListAccount = _getAccountUseCase.GetListAccountModel();
             return View();
         }
 

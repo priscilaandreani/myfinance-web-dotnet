@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 
 namespace myfinance_web_netcore.Domain
 {

@@ -1,4 +1,10 @@
 using myfinance_web_netcore;
+using myfinance_web_netcore.Application.GetAccountUseCase;
+using myfinance_web_netcore.Application.Interfaces;
+using myfinance_web_netcore.Repository.Interfaces;
+using myfinance_web_netcore.Repository.Repositories;
+using myfinance_web_netcore.Services.Account;
+using myfinance_web_netcore.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +14,11 @@ builder.Services.AddControllersWithViews();
 
 // Add db context
 builder.Services.AddDbContext<MyFinanceDbContext>();
+
+// dependencies resolver
+builder.Services.AddScoped<IGetAccountUseCase, GetAccountUseCase>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 
 var app = builder.Build();
