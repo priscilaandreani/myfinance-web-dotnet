@@ -4,26 +4,39 @@
     ViewData["Title"] = "Registrar nova transação";
 }
 
-<div class="text-center">
-    <h3 class="display-6">@ViewData["Title"]</h3>
-</div>
-
 <form asp-controller="Transaction" asp-action="Register" method="post">
-  <div class="mb-3">
-    <label for="id" class="form-label">Id</label>
-    <input type="text" class="form-control" id="id" aria-describedby="id" asp-for="Id" disabled/>
-  </div>
-  
-  <div class="mb-3">
-    <label for="date" class="form-label">Histórico</label>
-    <input type="text" class="form-control" id="history" aria-describedby="history" asp-for="History"/>
-  </div>
+    <div class="container">
+        <div class="mb-3">
+            <label class="form-label">Data</label>
+            <input type="hidden" id="txtId" class="form-control" asp-for="Id" />
+            <input type="date" id="txtData" class="form-control" asp-for="Date" value="2023-01-01"/>
+        </div>
 
-    <div class="mb-3">
-    <label for="date" class="form-label">Data</label>
-    <input type="date" class="form-control" id="date" aria-describedby="date" asp-for="Date"/>
-  </div>
+         <div class="mb-3">
+            <label class="form-label">Valor</label>
+            <input type="text" id="txtValor" class="form-control" asp-for="Value" step="0.01" />
+        </div>
 
+         <div class="mb-3">
+            <label class="form-label">Item Plano Conta</label>
+            @Html.DropDownListFor(m => m.AccountId, Model.Accounts, new { @class="form-select" } )
+        </div>
 
+         <div class="mb-3">
+            <label class="form-label">Histórico</label>
+            <input type="text" id="txtNome" class="form-control" asp-for="History" />
+        </div>
 
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+            <button type="button" class="btn btn-secondary btn-lg" onclick="Back()">Cancelar</button>
+        </div>
+
+    </div>
 </form>
+
+<script>
+  function Back(){
+    window.location.href = "../Transaction"
+  }
+</script>
